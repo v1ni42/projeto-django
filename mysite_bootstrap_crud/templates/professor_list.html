@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Professores</h2>
+  <a class="btn btn-primary" href="{% url 'professor_add' %}">Adicionar Professor</a>
+</div>
+<table class="table table-striped">
+  <thead><tr><th>Nome</th><th>Documento</th><th>Disciplina</th><th>Ações</th></tr></thead>
+  <tbody>
+  {% for obj in object_list %}
+  <tr>
+    <td>{{ obj.nome }}</td>
+    <td>{{ obj.documento }}</td>
+    <td>{{ obj.disciplina }}</td>
+    <td>
+      <a class="btn btn-sm btn-outline-secondary" href="{% url 'professor_edit' obj.pk %}">Editar</a>
+      <a class="btn btn-sm btn-outline-danger" href="{% url 'professor_delete' obj.pk %}">Excluir</a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4">Nenhum professor cadastrado.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Alunos</h2>
+  <a class="btn btn-primary" href="{% url 'aluno_add' %}">Adicionar Aluno</a>
+</div>
+<table class="table table-striped">
+  <thead><tr><th>Nome</th><th>Documento</th><th>Turma</th><th>Ações</th></tr></thead>
+  <tbody>
+  {% for obj in object_list %}
+  <tr>
+    <td>{{ obj.nome }}</td>
+    <td>{{ obj.documento }}</td>
+    <td>{{ obj.turma }}</td>
+    <td>
+      <a class="btn btn-sm btn-outline-secondary" href="{% url 'aluno_edit' obj.pk %}">Editar</a>
+      <a class="btn btn-sm btn-outline-danger" href="{% url 'aluno_delete' obj.pk %}">Excluir</a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4">Nenhum aluno cadastrado.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
